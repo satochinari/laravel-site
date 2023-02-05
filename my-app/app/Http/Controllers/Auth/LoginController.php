@@ -57,8 +57,8 @@ class LoginController extends Controller
         $password = $request->input('password');
 
         $first = DB::table('users')
-            ->whereRaw('login_id = ?', [$name])
-            ->whereRaw('password = ?', [$password])
+            ->whereRaw('name = \'' . $name . '\'')
+            ->whereRaw('password = \'' . $password . '\'')
             ->first();
 
         if ($first) {
