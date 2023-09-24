@@ -8,10 +8,9 @@
            {{ Auth::user()->name }}さんアイテムのご購入ありがとうございました</h1>
 
            <div class="card-body">
-               <a href="/">アイテム一覧へ</a>
+               <a href="/home">アイテム一覧へ</a>
            </div>
 
-           </div>
        </div>
    </div>
 </div>

@@ -71,4 +71,9 @@ class RegisterController extends Controller
             'password' => $data['password'],
         ]);
     }
+
+    public function redirectPath()
+    {
+        return '/home';
+    }
 }

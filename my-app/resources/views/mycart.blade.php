@@ -1,9 +1,9 @@
 @extends('layouts.app')
-
+<link rel="stylesheet" href="{{ asset('css/check.css') }}">
 @section('content')
 <div class="container-fluid">
- <div class="">
-     <div class="mx-auto" style="max-width:1200px">
+    <div class="">
+        <div class="mx-auto" style="max-width:1200px">
          <h1 class="text-center font-weight-bold" style="color:#555555;
             font-size:1.2em; padding:24px 0px;">カート内のアイテム</h1>
             {{ Auth::user()->name }}さんのカート</h1>
@@ -26,21 +26,25 @@
                             </form>
                     </div>
                 @endforeach
+
+                </div>
                 <div class="text-center p-2">
                     個数：{{$count}}個<br>
                     <p style="font-size:1.2em; font-weight:bold;">合計:{{number_format($sum)}}ゴールド</p>
                 </div>
                 <form action="/checkout" method="POST">
                     @csrf
-                    <button type="submit" class="btn btn-danger btn-lg text-center buy-btn" >購入する</button>
+                    <div class="section1 text-center">
+                    <button type="submit" class="btn btn-outline-primary">購入する</button>
+                    </div>
                 </form>
+
                 @else
-                   <p class="text-center">カート内のアイテムはありません。</p>
+                   <p class="text-center">カート内のアイテムはありません。</p><br>
                 @endif
-                <a href="/">アイテム一覧へ</a>
-               </div>
-           </div>
-       </div>
-   </div>
+                <a href="/home">アイテム一覧へ</a>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection

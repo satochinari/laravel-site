@@ -1,5 +1,6 @@
 @extends('layouts.app')
-
+<link rel="stylesheet" href="{{ asset('css/style.css') }}">
+<link rel="stylesheet" href="{{ asset('css/check.css') }}">
 @section('content')
 <div class="container-fluid">
    <div class="">
@@ -11,7 +12,8 @@
                   <div class="col-xs-6 col-sm-4 col-md-4 ">
                     <div class="mycart_box">
                       {{$stock->name}} <br>
-                      <img src="/image/{{$stock->imgpath}}" alt="" class="incart"><br>
+                      <iframe src="http://192.168.56.10:8000/click" width="300" height="200"></iframe>
+                      <img id="a" src="/image/{{$stock->imgpath}}" alt="" class="incart"><br>
                       {{$stock->fee}}ゴールド <br>
                       {{$stock->detail}} <br>
                       <form action="mycart" method="post">

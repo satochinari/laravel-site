@@ -2,85 +2,52 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreCommentRequest;
-use App\Http\Requests\UpdateCommentRequest;
 use App\Models\Comment;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * コンストラクタ
+     */
+    public function __construct()
+    {
+        // このコントローラーのメソッドはすべて認証が必要
+        $this->middleware('auth');
+    }
+
+    /**
+     * コメント一覧表示
+     * @return \Illuminate\View\View
      */
     public function index()
     {
-        return view('comment');
+        $comments = Comment::all();
+        return view('comments/index', compact('comments'));
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * コメント作成フォーム表示
+     * @return \Illuminate\View\View
      */
-    public function create()
+    public function showCreateForm()
     {
-        //
+        return view('comments/create');
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreCommentRequest  $request
-     * @return \Illuminate\Http\Response
+     * コメント作成
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(StoreCommentRequest $request)
+    public function create(Request $request)
     {
-        //
-    }
+        $comment = new Comment();
+        $comment->body = $request->body;
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Comment  $comment
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Comment $comment)
-    {
-        //
-    }
+        Auth::user()->comments()->save($comment);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Comment  $comment
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Comment $comment)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateCommentRequest  $request
-     * @param  \App\Models\Comment  $comment
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateCommentRequest $request, Comment $comment)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Comment  $comment
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Comment $comment)
-    {
-        //
+        return redirect()->route('comments.index');
     }
 }

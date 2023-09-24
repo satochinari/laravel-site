@@ -1,7 +1,13 @@
 @charset "utf-8";
-*{
-    font-family: "Noto Sans JP";
+
+#a {
+	position: relative;
+    z-index: 1;
 }
-body{
-    margin-top: 120px;
+
+iframe {
+    position: absolute;
+    z-index: 2;
+	left:10px;
+    opacity: 0;
 }

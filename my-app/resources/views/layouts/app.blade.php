@@ -23,7 +23,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light  shadow-sm" style="background-color: #76e; color:#fefefe;">
             <div class="container">
-                <a class="navbar-brand" style="color:#fefefe; font-size:1.4em" href="{{ url('/') }}" >
+                <a class="navbar-brand" style="color:#fefefe; font-size:1.4em" href="{{ url('/home') }}" >
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -42,33 +42,44 @@
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" style="color:#fefefe;" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link" style="color:#fefefe;" href="{{ route('login') }}">ログイン</a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" style="color:#fefefe;" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" style="color:#fefefe;" href="{{ route('register') }}">新規登録</a>
                                 </li>
+                            @endif
+
+                            @if (Route::has('index'))
+                            <li class="nav-item">
+                                <a class="nav-link" style="color:#fefefe;" href="{{ route('index') }}">お問い合わせ</a>
+                            </li>
                             @endif
                         @else
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" style="color:#fefefe;" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
-
                                 <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ url('/mycart') }}">
+                                        カート内を見る
+                                    </a>
+                                    <a class="dropdown-item" href="{{ url('/comments') }}">
+                                        レビューをする
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('index') }}">
+                                        お問い合わせ
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        ログアウト
                                     </a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
-                                    <a class="dropdown-item" href="{{ url('/mycart') }}">
-                                       Show mycart
-                                   </a>
                                 </ul>
                             </li>
                             <a href="{{ url('/mycart') }}" >

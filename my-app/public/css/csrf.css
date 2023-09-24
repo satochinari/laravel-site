@@ -1,0 +1,14 @@
+body {
+  background: black;
+  color: white;
+  margin: 0;
+  padding: 2rem;
+}
+
+a, a:visited {
+  color: cyan;
+}
+
+h1 {
+  margin-top: 0;
+}

@@ -64,7 +64,7 @@ class LoginController extends Controller
         if ($first) {
             $user = User::where('name', $name)->first();
             Auth::loginUsingId($user->id);
-            return redirect('/');
+            return redirect('/home');
         } else {
             return redirect()->back();
         }
