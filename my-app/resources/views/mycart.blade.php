@@ -5,7 +5,7 @@
     <div class="">
         <div class="mx-auto" style="max-width:1200px">
          <h1 class="text-center font-weight-bold" style="color:#555555;
-            font-size:1.2em; padding:24px 0px;">カート内のアイテム</h1>
+            font-size:1.2em; padding:24px 0px;">カート内の商品</h1>
             {{ Auth::user()->name }}さんのカート</h1>
 
             <div class="">
@@ -15,7 +15,7 @@
                 @foreach($my_carts as $my_cart)
                     <div class="mycart_box">
                         {{$my_cart->stock->name}} <br>
-                        {{ number_format($my_cart->stock->fee)}}ゴールド<br>
+                        {{ number_format($my_cart->stock->fee)}}円<br>
                             <img src="/image/{{$my_cart->stock->imgpath}}" alt="" class="incart" >
                             <br>
 
@@ -30,7 +30,7 @@
                 </div>
                 <div class="text-center p-2">
                     個数：{{$count}}個<br>
-                    <p style="font-size:1.2em; font-weight:bold;">合計:{{number_format($sum)}}ゴールド</p>
+                    <p style="font-size:1.2em; font-weight:bold;">合計:{{number_format($sum)}}円</p>
                 </div>
                 <form action="/checkout" method="POST">
                     @csrf
@@ -40,9 +40,9 @@
                 </form>
 
                 @else
-                   <p class="text-center">カート内のアイテムはありません。</p><br>
+                   <p class="text-center">カート内の商品はありません。</p><br>
                 @endif
-                <a href="/home">アイテム一覧へ</a>
+                <a href="/home">商品一覧へ</a>
             </div>
         </div>
     </div>

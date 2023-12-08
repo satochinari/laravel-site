@@ -8,10 +8,19 @@ use Illuminate\Http\Request;
 
 class ShopController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $stocks = Stock::Paginate(6);
-        return view('shop',compact('stocks'));
+        $keyword = $request->input('keyword');
+
+        $query = Stock::query();
+
+        if (!empty($keyword)) {
+            $query->where('name', 'LIKE', "%{$keyword}%");
+        }
+
+        $stocks = $query->paginate(6); //ストックをページ内に表示
+
+        return view('shop', compact('stocks', 'keyword'));
     }
     public function myCart(Cart $cart)
     {

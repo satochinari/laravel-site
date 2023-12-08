@@ -7,10 +7,10 @@
       <div class="card-body">
         <ul class="list-group">
           @foreach($comments as $comment)
-            <li class="list-group-item">
-              <p class="mb-1">{{ $comment->body }}</p>
-              <p class="text-muted mb-0">{{ $comment->user->name }}</p>
-            </li>
+          <li class="list-group-item">
+            <p class="mb-1">{{ $comment->body }}</p>
+            <p class="text-muted mb-0">{{ optional($comment->user)->name }}</p>
+          </li>
           @endforeach
         </ul>
         <div class="mt-3">

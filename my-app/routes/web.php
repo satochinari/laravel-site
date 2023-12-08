@@ -16,7 +16,7 @@ Route::get('helloworld', 'App\Http\Controllers\HelloWorldController@index');
 //認証
 Auth::routes();
 //ログイン後のトップページ
-Route::get('/home', 'App\Http\Controllers\ShopController@index')->middleware('auth');
+Route::get('/home', 'App\Http\Controllers\ShopController@index')->name('shop.index')->middleware('auth');
 //トップページ
 Route::get('/', 'App\Http\Controllers\HomeController@index');
 //自分のカート（認証あり）

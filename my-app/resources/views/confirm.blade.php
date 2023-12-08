@@ -9,7 +9,6 @@
                 <div class="card-body">
                   <form method="POST" action="{{ route('send') }}">
                   @csrf
-
                   <div class="row mb-3">
                     <label for="email" class="col-md-4 text-md-end">メールアドレス</label>
                       <div class="col-md-6">

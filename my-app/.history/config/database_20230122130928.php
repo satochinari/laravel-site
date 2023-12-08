@@ -46,7 +46,7 @@ return [
         'mysql' => [
             'driver' => 'mysql',
             'url' => env('DATABASE_URL'),
-            'host' => env('DB_HOST', '127.0.0.1'),
+            'host' => env('DB_HOST', '192.168.27.100'),
             'port' => env('DB_PORT', '3306'),
             'database' => env('DB_DATABASE', 'ecsite'),
             'username' => env('DB_USERNAME', 'laravel-ecsite'),

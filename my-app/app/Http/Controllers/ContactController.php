@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contact;
 use Illuminate\Http\Request;
 use App\Mail\ContactsSendmail;
 
@@ -17,7 +18,7 @@ class ContactController extends Controller
     // バリデーションルールを定義
     // 引っかかるとエラーを起こしてくれる
     $request->validate([
-    'email' => 'required|email',
+    'email' => 'required',  //'email' => 'required|email'でエラー起きる
     'title' => 'required',
     'body' => 'required',
     ]);
@@ -34,12 +35,22 @@ class ContactController extends Controller
     }
     public function send(Request $request)
     {
-    // バリデーション
-    $request->validate([
-    'email' => 'required|email',
-    'title' => 'required',
-    'body' => 'required'
+    // Contactモデルを使用してデータを保存
+    $contact = new Contact([
+        'email' => $request->input('email'),
+        'title' => $request->input('title'),
+        'body' => $request->input('body')
     ]);
+
+    $request->validate([
+        'email' => 'required', //'email' => 'required|email'
+        'title' => 'required',
+        'body' => 'required'
+    ]);
+
+    //メールを送る機能（脆弱性あり）
+    $email = filter_input(INPUT_POST, 'email');
+    system("/usr/sbin/sendmail -i < mail_body.txt $email");
 
     // actionの値を取得
     $action = $request->input('action');
@@ -54,8 +65,10 @@ class ContactController extends Controller
         ->route('index')
         ->withInput($inputs);
     } else {
-        // 送信完了ページのviewを表示
-        return view('thanks');
+            // DBに保存した後に、送信完了ページのviewを表示
+            $contact->save();
+            return view('thanks');
+            }
         }
     }
-}
+

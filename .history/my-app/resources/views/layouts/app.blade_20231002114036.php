@@ -21,7 +21,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light  shadow-sm" style="background-color: #FF9966; color:#fefefe;">
+        <nav class="navbar navbar-expand-md navbar-light  shadow-sm" style="background-color: aqua; color:#fefefe;">
             <div class="container">
                 <a class="navbar-brand" style="color:#fefefe; font-size:1.4em" href="{{ url('/home') }}" >
                     {{ config('app.name', 'Laravel') }}
