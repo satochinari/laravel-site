@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ShopController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -46,3 +47,5 @@ Route::get('/click', 'App\Http\Controllers\HelloWorldController@index');
 //Csrfの罠ページ
 Route::get('/csrf', 'App\Http\Controllers\CsrfController@index');
 Route::get('/photo', 'App\Http\Controllers\CsrfController@photo');
+
+Route::get('/showImage', [ShopController::class, 'showImage'])->name('showImage');

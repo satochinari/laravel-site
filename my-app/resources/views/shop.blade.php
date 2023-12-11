@@ -25,6 +25,12 @@
                         <input type="hidden" name="stock_id" value="{{ $stock->id }}">
                         <input type="submit" value="カートに入れる">
                       </form>
+                      @php
+                      $imageFileName = $stock->imgpath; // ファイル名を取得
+                      $imageRoute = route('showImage', ['file' => $imageFileName]); // URLを生成
+                      @endphp
+
+                      <a href="{{ $imageRoute }}" target="_blank" class="image-reference-button">画像参照</a>
                       </div>
                     </div>
                   @endforeach

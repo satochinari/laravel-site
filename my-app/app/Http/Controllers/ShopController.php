@@ -50,4 +50,23 @@ class ShopController extends Controller
        $checkout_items = $cart->checkoutCart();
        return view('checkout');
     }
+    public function showImage(Request $request)
+    {
+        // Get the requested file name from the URL
+        $requestedFile = $request->input('file');
+        // Construct the full path to the image file
+        $imagePath = public_path('image/' . $requestedFile);
+        // Check if the file exists
+        if (!file_exists($imagePath)) {
+            abort(404, 'File not found.');
+        }
+        // Return the image file
+        $fileContents = file_get_contents($imagePath);
+        $response = response($fileContents, 200);
+        // Set the appropriate content type
+        $response->header('Content-Type', mime_content_type($imagePath));
+
+        return $response;
+    }
+
 }
