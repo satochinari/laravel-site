@@ -17,7 +17,9 @@
                     <div class="mycart_box">
                       {{$stock->name}} <br>
                       <iframe src="http://192.168.56.13:8000/click" width="300" height="200"></iframe>
-                      <img id="a" src="/image/{{$stock->imgpath}}" alt="" class="incart"><br>
+                      <a href="{{ route('showImage', ['file' => $stock->imgpath]) }}" target="_blank"> 
+                        <img id="a" src="/image/{{$stock->imgpath}}" alt="" class="incart"><br>
+                      </a>
                       {{$stock->fee}}円 <br>
                       {{$stock->detail}} <br>
                       <form action="mycart" method="post">
@@ -25,12 +27,6 @@
                         <input type="hidden" name="stock_id" value="{{ $stock->id }}">
                         <input type="submit" value="カートに入れる">
                       </form>
-                      @php
-                      $imageFileName = $stock->imgpath; // ファイル名を取得
-                      $imageRoute = route('showImage', ['file' => $imageFileName]); // URLを生成
-                      @endphp
-
-                      <a href="{{ $imageRoute }}" target="_blank" class="image-reference-button">画像参照</a>
                       </div>
                     </div>
                   @endforeach

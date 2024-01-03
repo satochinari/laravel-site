@@ -75,7 +75,7 @@
                 <div class="links">
                     <a href="{{ route('login') }}">ログイン</a>
                     <a href="{{ route('register') }}">新規登録</a>
-                    <a href="{{ route('index') }}">お問い合わせ</a>
+                    <a href="{{ route('shop.index') }}">ログイン済みの方はこちら</a>
                 </div>
             </div>
         </div>
